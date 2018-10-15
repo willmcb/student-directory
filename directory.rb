@@ -1,15 +1,32 @@
-student_count = 11
-puts "The students of Villains Academy"
-puts "-------------"
-puts "Dr. Hannibal Lecter"
-puts "Darth Vader"
-puts "Nurse Ratched"
-puts "Michael Coleone"
-puts "Alex DeLarge"
-puts "The Wicked Witch of the West"
-puts "Terminator"
-puts "Fready Kruger"
-puts "The Joker"
-puts "Joffrey Baratheon"
-puts "Norman Bates"
-print "Overall, we have #{student_count} great students"
+students = [
+  "Dr. Hannibal Lecter",
+  "Darth Vader",
+  "Nurse Ratched",
+  "Michael Coleone",
+  "Alex DeLarge",
+  "The Wicked Witch of the West",
+  "Terminator",
+  "Fready Kruger",
+  "The Joker",
+  "Joffrey Baratheon",
+  "Norman Bates"
+]
+
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
+end
+
+def print_names(names)
+  names.each do |name|
+    puts name
+  end
+end
+
+def print_footer(names)
+  puts "Overall, we have #{names.count} great students"
+end
+
+print_header
+print_names(students)
+print_footer(students)
