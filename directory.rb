@@ -9,7 +9,11 @@ def input_students
     puts "Enter a cohort for #{name}"
     cohort = gets.chomp
     students << {name: name, cohort: cohort, hobbies: ['canoeing', 'climbing', 'fishing'], height: "5.11"}
-    puts "Now we have #{students.count} students"
+    how_many_std = "Now we have #{students.count} students"
+    if students.size == 1
+      how_many_std = how_many_std[0..-2]
+    end
+    puts how_many_std
     name = gets.chomp
   end
   students
