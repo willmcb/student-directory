@@ -1,13 +1,14 @@
-def input_statements
-  puts "Please enter the names of the students"
+def input_students
+  puts "Please enter the names of the students and their cohorts"
   puts "To finish just hit return twice"
 
   students = []
 
   name = gets.chomp
-
   while !name.empty? do
-    students << {name: name, cohort: :november, hobbies: ['canoeing', 'climbing', 'fishing'], height: "5.11"}
+    puts "Enter a cohort for #{name}"
+    cohort = gets.chomp
+    students << {name: name, cohort: cohort, hobbies: ['canoeing', 'climbing', 'fishing'], height: "5.11"}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
@@ -41,7 +42,7 @@ def print_footer(names)
   puts "Overall,  we have #{names.count} great students"
 end
 
-students = input_statements
+students = input_students
 print_header
 print(students)
 print_footer(students)
