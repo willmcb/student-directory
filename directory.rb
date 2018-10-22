@@ -23,10 +23,15 @@ def print(students)
   puts "Select first letter of student name to print"
   letter = gets.chomp.downcase
   count = 0
+  longest_name = students.sort_by{|name| name.size}.last.size
   while true
     break if students[count] == nil
+    current_name_size = students[count][:name].size
     if students[count][:name][0].downcase == letter && students[count][:name].size < 12
-      puts "#{count + 1}. #{students[count][:name]}( #{students[count][:cohort]} cohort, hobbies: #{students[count][:hobbies].join(", ")}, height: #{students[count][:height]})"
+      name = "#{count + 1}. #{students[count][:name]} "
+      details = "(#{students[count][:cohort]} cohort, hobbies: #{students[count][:hobbies].join(', ')}, height: #{students[count][:height]})"
+      offset = longest_name - current_name_size
+      puts name + details.center(80 + (offset * 2))
     end
     count += 1
   end
