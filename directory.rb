@@ -7,7 +7,7 @@ def input_statements
   name = gets.chomp
 
   while !name.empty? do
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: :november, hobbies: ['canoeing', 'climbing', 'fishing'], height: "5.11"}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
@@ -26,7 +26,7 @@ def print(students)
   while true
     break if students[count] == nil
     if students[count][:name][0].downcase == letter && students[count][:name].size < 12
-      puts "#{count + 1}. #{students[count][:name]}(#{students[count][:cohort]} cohort)"
+      puts "#{count + 1}. #{students[count][:name]}( #{students[count][:cohort]} cohort, hobbies: #{students[count][:hobbies].join(", ")}, height: #{students[count][:height]})"
     end
     count += 1
   end
