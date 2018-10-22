@@ -21,6 +21,7 @@ def print_header
 end
 
 def print(students)
+  students = students.sort_by{|hash| hash[:cohort] }
   puts "Select first letter of student name to print"
   letter = gets.chomp.downcase
   count = 0
