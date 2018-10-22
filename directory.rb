@@ -22,10 +22,13 @@ end
 def print(students)
   puts "Select first letter of student name to print"
   letter = gets.chomp.downcase
-  students.each_with_index  do |student, index|
-    if student[:name][0].downcase == letter && student[:name].size < 12
-      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  count = 0
+  while true
+    break if students[count] == nil
+    if students[count][:name][0].downcase == letter && students[count][:name].size < 12
+      puts "#{count + 1}. #{students[count][:name]}(#{students[count][:cohort]} cohort)"
     end
+    count += 1
   end
 end
 
