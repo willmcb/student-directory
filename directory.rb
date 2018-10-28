@@ -5,7 +5,7 @@ def add_student(student)
 end
 
 def try_load_students
-  filename = ARGV.first
+  filename = ARGV.first ||= ask_for_filename
   return if filename.nil?
   if File.exists?(filename)
     load_students(filename)
@@ -16,7 +16,10 @@ def try_load_students
   end
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename)
+  if filename.nil?
+    filename = ask_for_filename
+  end
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
@@ -26,7 +29,7 @@ def load_students(filename = "students.csv")
 end
 
 def save_students
-  file = File.open("students.csv", "w")
+  file = File.open(ask_for_filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -37,11 +40,11 @@ end
 
 
 def print_menu
-  puts "1. Input the students"
-  puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
-  puts "9. Exit"
+  puts "1. input the students"
+  puts "2. show the students"
+  puts "3. save the list to students.csv"
+  puts "4. load the list from students.csv"
+  puts "9. exit"
 end
 
 def show_students
@@ -54,17 +57,26 @@ def process(selection)
   case selection
     when "1"
       input_students
+      puts "Action complete"
     when "2"
       show_students
+      puts "Action complete"
     when "3"
       save_students
+      puts "Action complete"
     when "4"
-      load_students
+      load_students(nil)
+      puts "Action complete"
     when "9"
       exit
     else
       puts "I don't know what you mean, try again"
   end
+end
+
+def ask_for_filename
+  puts "Please enter file name of students you want to load"
+  STDIN.gets.chomp
 end
 
 def interactive_menu
