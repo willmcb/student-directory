@@ -1,3 +1,4 @@
+require 'CSV'
 @students = []
 
 def add_student(student)
@@ -29,11 +30,9 @@ def load_students(filename)
 end
 
 def save_students
-  file = File.open(ask_for_filename, "w") do |f|
+  CSV.open(ask_for_filename, "wb") do |csv|
     @students.each do |student|
-      student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      f.puts csv_line
+      csv << [student[:name], student[:cohort]]
     end
   end
 end
