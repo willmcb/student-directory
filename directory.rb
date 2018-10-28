@@ -1,5 +1,9 @@
 @students = []
 
+def add_student(student)
+  @students << student
+end
+
 def try_load_students
   filename = ARGV.first
   return if filename.nil?
@@ -16,7 +20,7 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+    add_student({name: name, cohort: cohort.to_sym})
   end
   file.close
 end
@@ -75,7 +79,7 @@ def input_students
   puts "To finish just hit return twice"
   name = STDIN.gets.chomp
   while !name.empty? do
-    @students << {name: name, cohort: :november}
+    add_student({name: name, cohort: :november})
     puts "Now we have #{@students.count} students"
     name = STDIN.gets.chomp
   end
